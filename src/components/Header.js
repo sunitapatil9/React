@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom";
 const Header = () => {
     const[btnnNameReact , setBtnNameReact] = useState('Login');
     //if usereffect is not having dependency array - it will every time when component renders
@@ -21,9 +22,10 @@ const Header = () => {
             </div>
             <div className="nav-items">
                 <ul>
-                    <li>Home</li>
-                    <li>About Us</li>
-                    <li>Contact Us</li>
+                    <li><Link to={'/'}>Home</Link></li>
+                    {/* <li><a href="/">About Us</a></li> */}
+                    <li><Link to={'/about'}>About Us</Link></li>
+                    <li><Link to={'/contact'}>Contact Us</Link></li>
                     <li>Cart</li>
                     <button className="login" onClick={() =>{
                         // setBtnNameReact('Logout'); // on click of login it is changing to logout using state variable

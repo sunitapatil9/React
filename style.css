@@ -50,3 +50,37 @@
 .search-btn{
     cursor: pointer;
 }
+/* resturant menu */
+.rest_menu{
+    margin-left: 25%;
+    max-width: 700px;
+}
+.rest_rating {
+    background: linear-gradient(rgb(255, 255, 255) 6.71%, rgb(235, 235, 242) 56.19%, rgb(223, 223, 231) 106.56%);
+    padding: 0px 16px 16px;
+    border-bottom-left-radius: 36px;
+    border-bottom-right-radius: 36px;
+}
+.rest_rating_info{
+    border-radius: 20px;
+    border: 1px solid rgba(2, 6, 12, 0.15);
+    background: white;
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 8px 16px 0px;
+    padding: 10px;  
+}
+.resturant_image{
+    width: 100px;
+}
+.main_div{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #f0f0f0;
+}
+.main_restorant{
+    text-decoration: none;
+    color :#000
+}
+.resturant_image{
+    padding-top: 25px;
+}
+
