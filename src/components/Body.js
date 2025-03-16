@@ -10,6 +10,16 @@ const BodyComponent = () =>{
 
     useEffect(()=>{
         getFetchData();
+        // constlty operation ned to close before leaving page
+        // const timer = setInterval(() =>{
+        //     console.log("usereffect set interval")
+        // },1000);
+
+
+        // // unmount()
+        // return () =>{
+        //     clearInterval(timer);
+        // }
     },[]);
 
     console.log("body rerenders")
