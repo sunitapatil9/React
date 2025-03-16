@@ -1,4 +1,4 @@
-import RestporantComponent from "./Restorant";
+import Restaurant from "./Restaurant";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
@@ -59,7 +59,7 @@ const BodyComponent = () =>{
             </div>
             <div className="resto__section">
                 {filteredDataList.map((results) => (
-                       <Link key={results.info.id} to={'/resturants/'+results.info.id} className="main_restorant"><RestporantComponent  resData = {results}/></Link>
+                       <Link key={results.info.id} to={'/resturants/'+results.info.id} className="main_restorant"><Restaurant  resData = {results}/></Link>
                 ))}
              
             </div>

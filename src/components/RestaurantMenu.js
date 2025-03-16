@@ -5,7 +5,7 @@ import { REST_MENU } from "../util/constants";
 import { IMAGE_LINK } from "../util/constants";
 
 
-const ResturantMenu = () =>{
+const RestaurantMenu = () =>{
     const [resInfo , setResInfo] = useState(null);
     const {resId} = useParams();
 
@@ -56,4 +56,4 @@ const ResturantMenu = () =>{
         </div>
     )
 }
-export default ResturantMenu;
+export default RestaurantMenu;
