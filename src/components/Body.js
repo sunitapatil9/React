@@ -2,11 +2,13 @@ import Restaurant from "./Restaurant";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../util/useOnlineStatus";
 
 const BodyComponent = () =>{
     const [restorantList , setrestorantList] = useState([]);
     const [ filteredDataList , setfilteredDataList] = useState([]);
     const [ searchText , setSearchText] = useState("");
+    const onlineStatus = useOnlineStatus();
 
     useEffect(()=>{
         getFetchData();
@@ -37,29 +39,35 @@ const BodyComponent = () =>{
     //     return <Shimmer />
     // }
     // also works with terbary operator 
+
+    if(onlineStatus === false){
+        return(
+            <h1>you are offine, Please check your internet connection</h1>
+        )
+    }
     return restorantList.length == 0 ? <Shimmer /> : (
-        <div className="body_section">
-            <div className="filter">
-                <input type="text" className="search-text" value={searchText} onChange ={(e) =>{
+        <div className="">
+            <div className="p-4 m-4">
+                <input type="text" className="border-1 pr-2" value={searchText} onChange ={(e) =>{
                     setSearchText(e.target.value);
                 }} />
 
-                <button className="search-btn" onClick = {() =>{
+                <button className="bg-green-200 rounded-md px-4 ml-2" onClick = {() =>{
                     console.log(searchText);
                     const filteredData = restorantList.filter(res => res.info.name.toLowerCase().includes(searchText.toLowerCase()));
                     setfilteredDataList(filteredData);
-                }}>Search</button>
+                }}>Search  </button>
 
-                <button className="filter-btn" onClick = {() =>{
+                <button className="pl-4" onClick = {() =>{
                     const filterdlist  = restorantList.filter(res => res.info.avgRating > 4.2)
                     // console.log(filterdlist)
                     setrestorantList(filterdlist);
-                }}>Top rated Restorants</button>
+                }}> Top rated Restorants</button>
 
             </div>
-            <div className="resto__section">
+            <div className="flex flex-wrap bg-pink-200">
                 {filteredDataList.map((results) => (
-                       <Link key={results.info.id} to={'/resturants/'+results.info.id} className="main_restorant"><Restaurant  resData = {results}/></Link>
+                       <Link key={results.info.id} to={'/resturants/'+results.info.id} className=""><Restaurant  resData = {results}/></Link>
                 ))}
              
             </div>
