@@ -65,7 +65,7 @@ const BodyComponent = () =>{
                 }}> Top rated Restorants</button>
 
             </div>
-            <div className="flex flex-wrap bg-pink-200">
+            <div className="flex flex-wrap">
                 {filteredDataList.map((results) => (
                        <Link key={results.info.id} to={'/resturants/'+results.info.id} className=""><Restaurant  resData = {results}/></Link>
                 ))}

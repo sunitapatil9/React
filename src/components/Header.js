@@ -17,7 +17,7 @@ const Header = () => {
     // },[btnnNameReact])
     const onlineStatus = useOnlineStatus();
     return (
-        <div className="flex items-center justify-between">
+        <div className="bg-red-50 flex items-center justify-between">
             <div className="w-34">
                 <img className="" src="https://www.clipartmax.com/png/small/124-1240748_vector-bergar-food-logo-download-fast-food.png"/>
             </div>
