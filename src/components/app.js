@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 // import { BrowserRouter, Route, Routes } from "react-router";
 import Header from "./Header";
@@ -8,6 +8,10 @@ import Contact from "./Contact";
 import Errorpage from "./Errorpage";
 import RestaurantMenu from "./RestaurantMenu";
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
+import UserContext from "../util/UserContext";
+import { Provider } from "react-redux";
+import appStore from "../util/appStore";
+import Cart from "./Cart"
 
 
 const styleCrad = {
@@ -20,11 +24,26 @@ const styleCrad = {
 
 
 const AppComponent = () => {
+
+    // dynamic way to access the user names
+    const[username, setUserName] = useState('');
+    useEffect(() => {
+        const data ={
+            "name" : "Sunita Patil"
+        }
+        setUserName(data.name);
+    })
+
+
     return(
-        <div className="app">
-            <Header/>
-            <Outlet />
-        </div>
+        <Provider store={appStore}>
+            <UserContext.Provider value={{loggedinUser : username, setUserName}}>
+                <div className="app">
+                    <Header/>
+                    <Outlet />
+                </div>
+            </UserContext.Provider>
+        </Provider>
     )
 }
 const AppRouter = createBrowserRouter([
@@ -47,6 +66,10 @@ const AppRouter = createBrowserRouter([
             {
                 path: '/resturants/:resId',
                 element :<RestaurantMenu />
+            },
+            {
+                path: '/cart',
+                element :<Cart />
             }
         ],
         errorElement :<Errorpage />

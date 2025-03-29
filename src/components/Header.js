@@ -1,8 +1,12 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState ,useContext} from "react"
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../util/useOnlineStatus";
+import UserContext from "../util/UserContext";
+import { useSelector } from "react-redux";
+
 const Header = () => {
     const[btnnNameReact , setBtnNameReact] = useState('Login');
+    const {loggedinUser } = useContext(UserContext);
     //if usereffect is not having dependency array - it will every time when component renders
     // useEffect(() =>{
     //     console.log("useffect created")
@@ -15,6 +19,9 @@ const Header = () => {
     // useEffect(() =>{
     //     console.log("useeffect created")
     // },[btnnNameReact])
+    //subscribing tot he store using selector
+    const cartItems = useSelector((store) => store.cart.items);
+    console.log(cartItems)
     const onlineStatus = useOnlineStatus();
     return (
         <div className="bg-red-50 flex items-center justify-between">
@@ -28,12 +35,13 @@ const Header = () => {
                     {/* <li><a href="/">About Us</a></li> */}
                     <li><Link to={'/about'}>About Us</Link></li>
                     <li><Link to={'/contact'}>Contact Us</Link></li>
-                    <li>Cart</li>
+                    <li><Link to={'/cart'}>Cart ({cartItems.length})</Link></li>
                     <button className="" onClick={() =>{
                         // setBtnNameReact('Logout'); // on click of login it is changing to logout using state variable
                         // toggle function
                         return btnnNameReact == 'Login' ? setBtnNameReact('Logout') : setBtnNameReact('Login');
                     }}>{btnnNameReact}</button>
+                    <li>{loggedinUser}</li>
                 </ul>
             </div>
         </div>

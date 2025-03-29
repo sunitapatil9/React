@@ -1,4 +1,5 @@
 import React from "react";
+import UserContext from "../util/UserContext";
 
 class UserClassComponent extends React.Component{
     constructor(props){
@@ -54,10 +55,17 @@ class UserClassComponent extends React.Component{
                         count : this.state.count + 1,
                     }) */}
                 {/* }}>User Count</button> */}
-                <img src={avatar_url} />
                 <h2>Name : {name}</h2>
                 <h6>Location : {location}</h6>
+                <UserContext.Consumer> 
+                    {/* it takes callback function for classbased component i have to access like this we can use it multiple times also */}
+                    {({loggedinUser}) =>(
+                        <h6> loggedinUser : {loggedinUser}</h6>
+                    ) }
+                </UserContext.Consumer>
+                
                 <h6>Profession : Software Engineering</h6>
+                <img src={avatar_url} />
             </div>
         )
     }
